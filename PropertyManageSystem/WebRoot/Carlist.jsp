@@ -29,11 +29,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<style type="text/css">
 	    /* example demo page styles */
+	   
 	    table {
 	        width: 100%;
 	        margin: 1em 0 2em;
 	        font-size: .938em;
 	        border-collapse: collapse;
+	    }
+	    select,input {
+	    	color: #000000;
+	    	color:#000000;
 	    }
 		body{ 
 			background-color:#ffffff;

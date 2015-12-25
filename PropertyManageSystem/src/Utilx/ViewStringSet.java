@@ -315,7 +315,7 @@ public class ViewStringSet {
 
 		String lists = select + "<input type='text' name='value' id='value' /> "
 				+ "<input  type='button' class='btn btn-primary'  id='submitlike' onclick='submitlike()' value='查询' />"
-				+ "<div id='tables'><table class='respond " + tablename + "'>\n" + ths
+				+ "<hr/><div id='tables'><table class='respond " + tablename + "'>\n" + ths
 				+ "<tbody>" + trs + "</tbody>" + "</table>";
 
 		String pagepick = "<nav>" + "<ul class=\"pagination\">" + "<li>"
@@ -341,7 +341,7 @@ public class ViewStringSet {
 		String tablename = "";
 		int i = 1;
 		int p = 1;
-		if(list!=null){
+		if(list.size()>0){
 		for (Object object : list) {
 			String th = "";
 			String td = "";
@@ -438,7 +438,7 @@ public class ViewStringSet {
 			i++;
 		}
 
-		String lists = "<div id='tables'><table class='respond " + tablename + "'>\n" + ths
+		String lists = "<hr/><div id='tables'><table class='respond " + tablename + "'>\n" + ths
 				+ "<tbody>" + trs + "</tbody>" + "</table>";
 
 		String pagepick = "<nav>" + "<ul class=\"pagination\">" + "<li>"
@@ -453,7 +453,7 @@ public class ViewStringSet {
 			return lists;
 		}
 		else{
-			return "根据当前字段和值没有查询到数据...";
+			return "<hr/><div style='color:#000000;'>根据当前字段和值没有查询到数据...</div>";
 			
 		}
 
