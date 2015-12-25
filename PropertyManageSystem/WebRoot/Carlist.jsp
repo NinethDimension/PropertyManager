@@ -20,11 +20,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.5-dist/css/bootstrap-theme.min.css"/>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.5-dist/js/jquery-1.11.3.mim.js" />
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.5-dist/js/jquery.min.js" />
 	
 	<link rel="stylesheet" type="text/css" href="css/default.css">
 	<link rel="stylesheet" href="css/responsive-tables.min.css" type="text/css">
 	
-	<script type="text/javascript"  src="js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-1.11.0.min.js" ></script>
+	
+
 	
 	
 	<style type="text/css">

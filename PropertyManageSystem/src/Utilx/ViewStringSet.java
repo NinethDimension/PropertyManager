@@ -315,7 +315,7 @@ public class ViewStringSet {
 
 		String lists = select + "<input type='text' name='value' id='value' /> "
 				+ "<input  type='button' class='btn btn-primary'  id='submitlike' onclick='submitlike()' value='查询' />"
-				+ "<hr/><div id='tables'><table class='respond " + tablename + "'>\n" + ths
+				+ "<hr/><div id='tables' class='table-responsive' ><table class='table table-striped table-hover table-bordered " + tablename + "'>\n" + ths
 				+ "<tbody>" + trs + "</tbody>" + "</table>";
 
 		String pagepick = "<nav>" + "<ul class=\"pagination\">" + "<li>"
@@ -438,7 +438,8 @@ public class ViewStringSet {
 			i++;
 		}
 
-		String lists = "<hr/><div id='tables'><table class='respond " + tablename + "'>\n" + ths
+
+		String lists = "<hr/><div id='tables' class='table-responsive'><table class='table table-striped table-hover table-bordered " + tablename + "'>\n" + ths
 				+ "<tbody>" + trs + "</tbody>" + "</table>";
 
 		String pagepick = "<nav>" + "<ul class=\"pagination\">" + "<li>"
