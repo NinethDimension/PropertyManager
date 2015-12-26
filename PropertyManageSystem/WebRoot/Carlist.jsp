@@ -71,7 +71,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        text-align:center;
 	        border-bottom: solid 1px #ccc;
 	    }
-
+		.active{
+			background:#66677c;
+		}
 	</style>
 	
 	<!--[if IE]>
@@ -99,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		var propertyName = $('#propertyName').val();
    		var value=$('#value').val();
    		
-   		alert("propertyName"+propertyName+"value"+value)
+   		//alert("propertyName"+propertyName+"value"+value)
    		/*$.ajax({
 		   		url: ${cvm.viewClass.action},
 		   		type: 'post',
@@ -107,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   				value : value
 		   			  },
 		   		success:function(){*/
-   		$('#tables').load("carAssign!likelist?propertyName="+propertyName+"&value="+value);
+   		$('#tables').load("carAssign!likelist",{"propertyName":propertyName,"value":value});
    				//}
    			  //})
    			  
@@ -126,10 +128,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	
     	$('.page').click(function(){
     		var va= $(this).attr('ps')
+    		$('.active').removeClass('active')
+    		$(this).attr('class','active')
     		loadp(va)
     	})
     	
-    })
+    	
+    	
+    	$('.pagelast').click(function(){
+    		
+    		var va=$('.active').attr('ps')
+    		var vi=parseInt(va)
+    		//alert(vi)
+    		if(vi>1){
+	    		$('.active').removeClass('active')
+	    		va= vi-1
+	    		
+	    		$('#'+va).attr('class','active')
+	    		loadp(va)
+    		}
+    		
+    	})
+    	
+    	
+    	$('.pagenext').click(function(){
+    		var total=$('nav').attr('total')
+    		var totali=parseInt(total)
+    		//alert(totali)
+    		var va=$('.active').attr('ps')
+    		var vi=parseInt(va)
+    		if(vi<totali){
+    		$('.active').removeClass('active')
+    		//alert(va)
+    		va= vi+1
+    		//alert(va)
+    		$('#'+va).attr('class','active')
+    		loadp(va)
+    		}
+    	})
+    	
+    })//readyend;
     
     	
     </script>

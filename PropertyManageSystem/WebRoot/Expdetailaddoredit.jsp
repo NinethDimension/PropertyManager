@@ -23,6 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.5-dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.5-dist/js/jquery-1.11.3.mim.js" />
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.5-dist/js/jquery.min.js" />
+	
+	<script type="text/javascript" src="js/jquery-1.11.0.min.js" ></script>
 	<style type="text/css">
 		.expdetailId{
 			display: none;		
@@ -46,6 +48,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 
     </form>
+    
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    	
+    	$.post(  
+              
+                "expensetypeAssign!fkfind",        //服务器要接受的url  
+                   //传递的参数       
+                  
+               function cbf(data){ //服务器返回后执行的函数 参数 data保存的就是服务器发送到客户端的数据  
+                  
+                   alert(data.str);
+                   var ad=  data.str;
+                   ad=ad.replace(/&lt;/g,"<")
+                   ad=ad.replace(/&gt;/g,">")
+                    $('#expenseId').append(ad)
+                }, 'json'); 
+    	
+    	//load("expensetypeAssign!fkfind")
+    	
+    	})
+    	
+    </script>
     </div>
   </body>
 </html>

@@ -131,6 +131,9 @@ public class ViewStringSet {
 				}
 
 				if (hide == null) {
+					
+					FK fkann = dfield.getAnnotation(FK.class);
+					if (fkann == null) {
 					// 组装成HTML语句并注入到Viewmodel中
 					str += "<div class='form-group row'><label for='"
 							+ fieldname
@@ -140,6 +143,16 @@ public class ViewStringSet {
 							+ "' name='" + table + "." + fieldname
 							+ "' class='form-control " + fieldname
 							+ "' /></div></div><br/>\n";
+					}
+					else{
+						str += "<div class='form-group row'><label for='"
+								+ fieldname
+								+ "' class='fieldname control-label col-sm-2 "
+								+ fieldname + "' >" + label + ":" + "</label>"
+								+ "<div class='col-md-4'><select class='form-control " + fieldname
+								+ "' id='"+fieldname+"' name='" + table + "." + fieldname
+								+ "'></select></div></div><br/>\n";
+					}
 				}
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				// TODO Auto-generated catch block
@@ -206,6 +219,7 @@ public class ViewStringSet {
 		String lis = "";
 		String tablename = "";
 		String select = "";
+		int total=0;
 		int i = 1;
 		int p = 1;
 		for (Object object : list) {
@@ -299,30 +313,44 @@ public class ViewStringSet {
 					+ "Action!delete?" + id + "=" + idvalue
 					+ "' ></a></td></tr>\n";
 			th = "<thead><tr>" + th + "<th colspan='2'>操作</th></tr></thead>";
-			if (i == 5) {
-				lis += "<li><a href='javasript:retrun false' class='page'   ps='"
+			if(i==1){
+				if(p==1){
+					lis += "<li><a href='javasript:retrun false' class='page active' id='"+p+"'  ps='"
 						+ p + "'>" + p + "</a></li>";
+				}
+				else{
+					lis += "<li><a href='javasript:retrun false' class='page' id='"+p+"'  ps='"
+							+ p + "'>" + p + "</a></li>";
+				}
+			}
+			if (i == 5) {
+				
 				p++;
 				i = 0;
 			}
 
 			trs += td;
 			ths = th;
-
+			
 			select = "<select class='' name='propertyName' id='propertyName'>" + option + "</select>";
 			i++;
 		}
-
+		if(list.size()%5==0){
+			total=list.size()/5;
+		}
+		else{
+			total=list.size()/5+1;
+		}
 		String lists = select + "<input type='text' name='value' id='value' /> "
 				+ "<input  type='button' class='btn btn-primary'  id='submitlike' onclick='submitlike()' value='查询' />"
 				+ "<hr/><div id='tables' class='table-responsive' ><table class='table table-striped table-hover table-bordered " + tablename + "'>\n" + ths
 				+ "<tbody>" + trs + "</tbody>" + "</table>";
 
-		String pagepick = "<nav>" + "<ul class=\"pagination\">" + "<li>"
-				+ "<a  class='page' aria-label=\"Previous\">"
+		String pagepick = "<nav style='position:fixed; bottom:20px;' total='"+total+"'>" + "<ul class=\"pagination\">" + "<li>"
+				+ "<a  href='javasript:retrun false' class='pagelast' aria-label=\"Previous\">"
 				+ "<span aria-hidden=\"true\">&laquo;</span>" + "</a>"
 				+ "</li>" + lis + "<li>"
-				+ "<a  class='page' aria-label=\"Next\">"
+				+ "<a href='javasript:retrun false'  class='pagenext' aria-label=\"Next\">"
 				+ "<span aria-hidden=\"true\">&raquo;</span>" + "</a>"
 				+ "</li>" + "</ul>" + "</nav></div>";
 
@@ -339,6 +367,7 @@ public class ViewStringSet {
 		String trs = "";
 		String lis = "";
 		String tablename = "";
+		int total=0;
 		int i = 1;
 		int p = 1;
 		if(list.size()>0){
@@ -426,9 +455,18 @@ public class ViewStringSet {
 					+ "Action!delete?" + id + "=" + idvalue
 					+ "' ></a></td></tr>\n";
 			th = "<thead><tr>" + th + "<th colspan='2'>操作</th></tr></thead>";
-			if (i == 5) {
-				lis += "<li><a href='javasript:retrun false' class='page'   ps='"
+			if(i==1){
+				if(p==1){
+				lis += "<li><a href='javasript:retrun false' class='page active' id='"+p+"'  ps='"
 						+ p + "'>" + p + "</a></li>";
+				}
+				else{
+					lis += "<li><a href='javasript:retrun false' class='page' id='"+p+"'  ps='"
+							+ p + "'>" + p + "</a></li>";
+				}
+			}
+			if (i == 5) {
+				
 				p++;
 				i = 0;
 			}
@@ -437,16 +475,22 @@ public class ViewStringSet {
 			ths = th;
 			i++;
 		}
-
-
-		String lists = "<hr/><div id='tables' class='table-responsive'><table class='table table-striped table-hover table-bordered " + tablename + "'>\n" + ths
+		
+		if(list.size()%5==0){
+			total=list.size()/5;
+		}
+		else{
+			total=list.size()/5+1;
+		}
+			
+		String lists = "<div id='tables' class='table-responsive'><table class='table table-striped table-hover table-bordered " + tablename + "'>\n" + ths
 				+ "<tbody>" + trs + "</tbody>" + "</table>";
 
-		String pagepick = "<nav>" + "<ul class=\"pagination\">" + "<li>"
-				+ "<a  class='page' aria-label=\"Previous\">"
+		String pagepick = "<nav style='position:fixed; bottom:20px;' total='"+total+"'>" + "<ul class=\"pagination\">" + "<li>"
+				+ "<a href='javasript:retrun false' class='pagelast' aria-label=\"Previous\">"
 				+ "<span aria-hidden=\"true\">&laquo;</span>" + "</a>"
 				+ "</li>" + lis + "<li>"
-				+ "<a  class='page' aria-label=\"Next\">"
+				+ "<a href='javasript:retrun false' class='pagenext' aria-label=\"Next\">"
 				+ "<span aria-hidden=\"true\">&raquo;</span>" + "</a>"
 				+ "</li>" + "</ul>" + "</nav></div>";
 
